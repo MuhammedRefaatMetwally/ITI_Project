@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ITI_Project</string>
+    <string name="email">Email</string>
+    <string name="login">Login</string>
+    <string name="login_success">Login Successfully Sir! ,Welcome to Android Development</string>
+    <string name="login_failed">Login Failed Sir :( , Pleas Enter the Email !!</string>
+
 </resources>
