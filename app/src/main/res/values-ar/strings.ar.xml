@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="username_Label"> اسم المستخدم:</string>
+    <string name="password_label">كلمة المرور:</string>
+    <string name="login_form"> استمارة تسجيل الدخول</string>
+    <string name="password" > ادخل كلمة المرور</string>
+    <string name="username" >ادخل اسم المستخدم</string>
+    <string name="login" >تسجيل الدخول</string>
+</resources>

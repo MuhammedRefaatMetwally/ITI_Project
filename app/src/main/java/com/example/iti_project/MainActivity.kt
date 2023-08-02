@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val emailText = binding.editTextEmail.text
+        val emailText = binding.editTextLogin.text
 
         binding.loginButton.setOnClickListener {
             if (emailText.isNotEmpty()) {
