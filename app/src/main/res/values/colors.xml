@@ -2,9 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="bg_color">#241468</color>
-    <color name="input_color">#9F0D7F</color>
-    <color name="main_text_color">#EA1179</color>
+    <color name="bg_color">#AAC4FF</color>
+    <color name="input_color">#B1B2FF</color>
+    <color name="main_text_color">#EEF1FF</color>
     <color name="label_text_color">#F79BD3</color>
-    <color name="btn_text_color">#0D1282</color>
+    <color name="btn_text_color">#241468</color>
 </resources>

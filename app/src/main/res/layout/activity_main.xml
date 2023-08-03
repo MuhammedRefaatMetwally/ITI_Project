@@ -1,86 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/bg_color"
+    android:orientation="vertical"
     android:padding="24dp">
 
     <TextView
+        android:id="@+id/main_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/login_form"
         android:layout_gravity="center"
-        android:textSize="32sp"
-        android:textColor="@color/main_text_color"
-        android:textStyle="bold"
         android:layout_marginBottom="24dp"
-        />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/label_text_color"
-            android:textSize="18sp"
-            android:layout_gravity="end"
-            android:text="@string/username_Label"
-            />
-        <EditText
-            android:id="@+id/edit_text_login"
-            android:layout_width="match_parent"
-            android:background="@color/input_color"
-            android:padding="8dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:hint="@string/username" />
-
-    </LinearLayout>
+        android:text="@string/login_form"
+        android:textColor="@color/main_text_color"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
+    <TextView
+        android:id="@+id/text_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/username_Label"
+        android:textColor="@color/btn_text_color"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@id/input_username"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/input_username" />
+
+    <EditText
+        android:id="@+id/input_username"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:layout_height="wrap_content">
+        android:background="@color/input_color"
+        android:hint="@string/username"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_username"
+        app:layout_constraintTop_toBottomOf="@id/main_title" />
 
-        <TextView
+
+    <TextView
+        android:id="@+id/password_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/password_label"
+        android:textColor="@color/btn_text_color"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@id/text_username"
+        app:layout_constraintTop_toTopOf="@id/input_password" />
+
+    <EditText
+        android:id="@+id/input_password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/input_color"
+        android:hint="@string/password"
+        android:inputType="numberPassword"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/password_text"
+        app:layout_constraintTop_toBottomOf="@id/input_username" />
+
+
+    <TextView
+        android:id="@+id/sports_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/sports"
+        android:textColor="@color/btn_text_color"
+        android:textSize="32sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/password_text" />
+
+    <CheckBox
+        android:id="@+id/gaming_ck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:buttonTint="@color/btn_text_color"
+        android:text="@string/gaming"
+        android:textColor="@color/main_text_color"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sports_tv" />
+
+    <CheckBox
+        android:id="@+id/soccer_ck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:buttonTint="@color/btn_text_color"
+        android:text="@string/soccer"
+        android:textColor="@color/main_text_color"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gaming_ck" />
+
+    <CheckBox
+        android:id="@+id/pingPong_ck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:buttonTint="@color/btn_text_color"
+        android:text="@string/ping_pong"
+        android:textColor="@color/main_text_color"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/soccer_ck" />
+
+
+    <TextView
+        android:id="@+id/gender_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/gender"
+        android:textColor="@color/btn_text_color"
+        android:textSize="32sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pingPong_ck" />
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/gender_tv">
+
+        <RadioButton
+            android:id="@+id/male_radio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/label_text_color"
-            android:textSize="18sp"
-            android:layout_gravity="end"
+            android:buttonTint="@color/btn_text_color"
+            android:text="@string/male"
+            android:textColor="@color/btn_text_color"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
-            android:text="@string/password_label"
-            />
-        <EditText
-            android:id="@+id/edit_text_password"
-            android:layout_width="match_parent"
-            android:padding="8dp"
-            android:background="@color/input_color"
+        <RadioButton
+            android:id="@+id/female_radio"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:hint="@string/password" />
-
-    </LinearLayout>
-
-
+            android:layout_marginLeft="40dp"
+            android:buttonTint="@color/label_text_color"
+            android:text="@string/female"
+            android:textColor="@color/label_text_color"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+    </RadioGroup>
 
     <Button
-        android:layout_gravity="center"
         android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="32dp"
         android:background="@color/main_text_color"
         android:text="@string/login"
         android:textColor="@color/btn_text_color"
         android:textSize="24sp"
-        app:backgroundTint="@null" />
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/radio_group" />
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

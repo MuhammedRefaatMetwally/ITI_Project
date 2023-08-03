@@ -1,12 +1,19 @@
 <resources>
     <string name="app_name" translatable="false">ITI_Project</string>
     <string name="login_success" translatable="false">Login Successfully Sir! ,Welcome to Android Development</string>
-    <string name="login_failed" translatable="false">Login Failed Sir :( , Pleas Enter the Email !!</string>
+    <string name="login_failed" translatable="false">Login Failed Sir :( , Pleas Fill up the details !!</string>
     <string name="username_Label">UserName:</string>
     <string name="password_label">Password:</string>
     <string name="login_form">Login Form</string>
     <string name="password" >Enter Password</string>
     <string name="username" >Enter Username</string>
     <string name="login" >Login</string>
+    <string name="sports">Sports:</string>
+    <string name="gaming">Gaming</string>
+    <string name="soccer">Soccer</string>
+    <string name="ping_pong">Ping Pong</string>
+    <string name="male">Male</string>
+    <string name="gender">Gender:</string>
+    <string name="female">Female</string>
 
 </resources>

@@ -6,4 +6,11 @@
     <string name="password" > ادخل كلمة المرور</string>
     <string name="username" >ادخل اسم المستخدم</string>
     <string name="login" >تسجيل الدخول</string>
+    <string name="sports">الرياضات:</string>
+    <string name="gaming">الألعاب الالكترونية</string>
+    <string name="soccer">كرة القدم</string>
+    <string name="ping_pong">بينج بونج</string>
+    <string name="male">ذكر</string>
+    <string name="gender">الجنس:</string>
+    <string name="female">أنثى</string>
 </resources>
