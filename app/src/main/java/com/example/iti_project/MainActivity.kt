@@ -98,7 +98,23 @@ class MainActivity : AppCompatActivity() {
                 showExitDialog()
                 true
             }
-
+            //Search Topic
+            R.id.item1 ->{
+                item.isChecked = !item.isChecked
+                true
+            }
+            R.id.item2 ->{
+                item.isChecked = !item.isChecked
+                true
+            }
+            R.id.item3 ->{
+                item.isChecked = !item.isChecked
+                true
+            }
+            R.id.item4 ->{
+                item.isChecked = !item.isChecked
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }

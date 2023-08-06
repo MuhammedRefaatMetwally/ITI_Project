@@ -25,5 +25,6 @@
     <string name="login_btn">Login</string>
     <string name="exit">Exit</string>
     <string name="go_to_second">Go to Second</string>
+    <string name="i_love_android">I Love Andriod</string>
 
 </resources>

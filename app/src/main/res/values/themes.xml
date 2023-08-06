@@ -2,7 +2,6 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.ITI_Project" parent="Theme.Material3.DayNight">
          <item name="colorPrimaryDark">@color/bg_color</item>
-         <item name="colorPrimary">@color/input_color</item>
 
     </style>
 
