@@ -1,9 +1,13 @@
 package com.example.iti_project
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.example.iti_project.databinding.ActivityMainBinding
 import java.io.File
 
@@ -32,16 +36,17 @@ class MainActivity : AppCompatActivity() {
         binding.loginButton.setOnClickListener {
             val emailText = binding.inputUsername.text.toString()
 
-            validateLogin = (emailText.isNotEmpty() &&  passwordText.isNotEmpty()) &&
+            validateLogin = (emailText.isNotEmpty() && passwordText.isNotEmpty()) &&
                     (gamingCheckbox.isChecked || soccerCheckbox.isChecked || pingPongCheckbox.isChecked)
                     && (maleRadioBtn.isChecked || femaleRadioBtn.isChecked)
 
             checkOnData()
 
-            if(validateLogin){
+            if (validateLogin) {
                 navigatingToScreen(emailText, sports, gender)
-            }else{
-                Toast.makeText(this@MainActivity,"Fill up the Form Please!",Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(this@MainActivity, "Fill up the Form Please!", Toast.LENGTH_LONG)
+                    .show()
             }
         }
 
@@ -74,6 +79,49 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra(Constant.GENDER, gender)
 
         startActivityForResult(intent, 3)
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main_activity, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.go_to_second -> {
+                startActivity(Intent(this@MainActivity, SecondActivity::class.java))
+                true
+            }
+
+            R.id.exit -> {
+                showExitDialog()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private val myInterfaceForDialog = DialogInterface.OnClickListener { dialog, which ->
+        when (which) {
+            -1 -> finish()
+            -2 -> dialog.cancel()
+            else -> Toast.makeText(this, "Action Canceled", Toast.LENGTH_LONG).show()
+        }
+
+    }
+
+    private fun showExitDialog() {
+        val dialogBuilder = AlertDialog.Builder(this)
+        dialogBuilder.setTitle(getString(R.string.dialog_title))
+        dialogBuilder.setMessage(getString(R.string.dialog_message))
+        dialogBuilder.setPositiveButton(getString(R.string.dialogn_yes), myInterfaceForDialog)
+        dialogBuilder.setNegativeButton(getString(R.string.dialog_no), myInterfaceForDialog)
+        dialogBuilder.setNeutralButton(getString(R.string.dialog_cancel), myInterfaceForDialog)
+
+        val alertDialog = dialogBuilder.create()
+        alertDialog.show()
     }
 
     @Deprecated(
