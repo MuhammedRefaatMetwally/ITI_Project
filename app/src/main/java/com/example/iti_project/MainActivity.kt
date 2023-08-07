@@ -9,7 +9,6 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.iti_project.databinding.ActivityMainBinding
-import java.io.File
 
 class MainActivity : AppCompatActivity() {
 
@@ -73,12 +72,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun navigatingToScreen(username: String, sports: String, gender: String) {
-        val intent = Intent(this@MainActivity, SecondActivity::class.java)
-        intent.putExtra(Constant.USER_NAME, username)
+        startActivity( Intent(this@MainActivity, FacebookActivity::class.java))
+       /* intent.putExtra(Constant.USER_NAME, username)
         intent.putExtra(Constant.SPORTS, sports)
-        intent.putExtra(Constant.GENDER, gender)
-
-        startActivityForResult(intent, 3)
+        intent.putExtra(Constant.GENDER, gender)*/
+        /*startActivityForResult(intent, 3)*/
     }
 
 
@@ -90,7 +88,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.go_to_second -> {
-                startActivity(Intent(this@MainActivity, SecondActivity::class.java))
+                startActivity(Intent(this@MainActivity, FacebookActivity::class.java))
                 true
             }
 

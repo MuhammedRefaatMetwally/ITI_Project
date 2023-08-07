@@ -7,4 +7,6 @@
     <color name="main_text_color">#EEF1FF</color>
     <color name="label_text_color">#F79BD3</color>
     <color name="btn_text_color">#241468</color>
+    <color name="facebook_color">#23599A</color>
+    <color name="facebook_btn_color">#4F69A1</color>
 </resources>
