@@ -6,5 +6,8 @@ class Constant {
         val SPORTS = "sport"
         val GENDER = "gender"
         val LOGIN_BY = "login_by"
+        val POST_IMAGE = "post_image"
+        val POST_NAME = "post_name"
+        val POST_STATUS = "post_status"
     }
 }

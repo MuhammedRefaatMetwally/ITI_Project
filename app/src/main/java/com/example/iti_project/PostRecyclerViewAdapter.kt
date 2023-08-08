@@ -8,7 +8,7 @@ import com.example.iti_project.databinding.PostItemBinding
 import com.example.myapplication.OnItemClickListener
 import com.squareup.picasso.Picasso
 
-class PostRecyclerViewAdapter(private val posts: List<Post>?) : RecyclerView.Adapter<PostViewHolder?>() {
+class PostRecyclerViewAdapter(private val posts: List<Post>?, private val listener: OnItemClickListener) : RecyclerView.Adapter<PostViewHolder?>() {
 
     inner class PostViewHolder(val binding: PostItemBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -27,14 +27,11 @@ class PostRecyclerViewAdapter(private val posts: List<Post>?) : RecyclerView.Ada
         holder.binding.textViewStatus.text = item.status
         holder.binding.textViewLastOnline.text = item.lastOnline + " hr"
         holder.binding.textViewLikes.text = item.likes
-        holder.binding.postImage.setOnClickListener { onItemClickListener?.onClick(item,position) }
+        holder.binding.postImage.setOnClickListener { listener.onClick(item,position) }
     }
 
-     private var onItemClickListener : OnItemClickListener? = null
 
-    fun setOnItemClickListener(onItemClickListener: OnItemClickListener){
-        this.onItemClickListener = onItemClickListener
-    }
+
 
 
     override fun getItemCount(): Int {

@@ -1,12 +1,13 @@
 package com.example.iti_project
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.OnItemClickListener
 
-class FacebookActivity : AppCompatActivity() {
+class FacebookActivity : AppCompatActivity() , OnItemClickListener{
 
     private lateinit var recyclerViewPosts: RecyclerView
     private lateinit var recyclerViewStories: RecyclerView
@@ -27,13 +28,8 @@ class FacebookActivity : AppCompatActivity() {
         createStoryList()
         recyclerViewPosts = findViewById(R.id.rv_posts)
         recyclerViewStories = findViewById(R.id.stories_rv)
-        postAdapter = PostRecyclerViewAdapter(posts)
-        postAdapter.setOnItemClickListener(object: OnItemClickListener {
-            override fun onClick(postItem: Post, position: Int) {
-                Toast.makeText(this@FacebookActivity,"YAY",Toast.LENGTH_LONG).show()
-            }
+        postAdapter = PostRecyclerViewAdapter(posts,this)
 
-        })
         storyAdapter = StoryRecyclerViewAdapter(stories)
         recyclerViewPosts.adapter = postAdapter
         recyclerViewStories.adapter = storyAdapter
@@ -119,5 +115,13 @@ class FacebookActivity : AppCompatActivity() {
                 Story("https://c4.wallpaperflare.com/wallpaper/694/865/147/space-art-fantasy-art-sky-clouds-wallpaper-preview.jpg")
             )
         }
+    }
+
+    override fun onClick(postItem: Post, position: Int) {
+        val intent = Intent(this@FacebookActivity,FacebookDetailsActivity::class.java)
+        intent.putExtra("post_image",postItem.postImage)
+        intent.putExtra("post_name",postItem.name)
+        intent.putExtra("post_status",postItem.status)
+     startActivity(intent)
     }
 }
