@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
        editor.putString("USER_NAME" , binding.inputUsername.text.toString())
        editor.putString("PASSWORD" , binding.inputPassword.text.toString())
        editor.putBoolean("IS_LOGIN" , true)
-       editor.apply()
+       editor.commit()
 
    }
     private fun checkOnData() {
