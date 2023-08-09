@@ -44,18 +44,18 @@
                        android:padding="16dp"
                        android:src="@drawable/small_house_with_chimney"
                        app:layout_constraintBottom_toBottomOf="parent"
-                       app:layout_constraintEnd_toStartOf="@id/icon2"
+                       app:layout_constraintEnd_toStartOf="@id/logout_icon2"
                        app:layout_constraintStart_toStartOf="parent"
                        app:layout_constraintTop_toTopOf="parent"
                        app:tint="@color/white" />
 
                    <ImageView
-                       android:id="@+id/icon2"
+                       android:id="@+id/logout_icon2"
                        android:layout_width="0dp"
                        android:layout_height="0dp"
                        android:layout_marginEnd="8dp"
                        android:padding="8dp"
-                       android:src="@drawable/customer_service"
+                       android:src="@drawable/logout_svgrepo_com"
                        app:layout_constraintBottom_toBottomOf="parent"
                        app:layout_constraintEnd_toStartOf="@id/icon3"
                        app:layout_constraintStart_toEndOf="@id/icon1"
@@ -71,7 +71,7 @@
                        android:src="@drawable/play_button"
                        app:layout_constraintBottom_toBottomOf="parent"
                        app:layout_constraintEnd_toStartOf="@id/icon4"
-                       app:layout_constraintStart_toEndOf="@id/icon2"
+                       app:layout_constraintStart_toEndOf="@id/logout_icon2"
                        app:layout_constraintTop_toTopOf="parent"
                        app:tint="@color/white" />
 

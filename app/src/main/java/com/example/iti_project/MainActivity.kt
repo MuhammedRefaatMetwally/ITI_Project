@@ -1,5 +1,7 @@
 package com.example.iti_project
 
+import android.app.Application
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -38,7 +40,7 @@ class MainActivity : AppCompatActivity() {
             validateLogin = (emailText.isNotEmpty() && passwordText.isNotEmpty()) &&
                     (gamingCheckbox.isChecked || soccerCheckbox.isChecked || pingPongCheckbox.isChecked)
                     && (maleRadioBtn.isChecked || femaleRadioBtn.isChecked)
-
+            saveDataToPreferences()
             checkOnData()
 
             if (validateLogin) {
@@ -49,8 +51,18 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-    }
 
+
+    }
+   private  fun saveDataToPreferences(){
+       val pref = applicationContext.getSharedPreferences("MyData" , Context.MODE_PRIVATE)
+       val editor = pref.edit()
+       editor.putString("USER_NAME" , binding.inputUsername.text.toString())
+       editor.putString("PASSWORD" , binding.inputPassword.text.toString())
+       editor.putBoolean("IS_LOGIN" , true)
+       editor.apply()
+
+   }
     private fun checkOnData() {
         if (binding.soccerCk.isChecked) {
             sports += "Soccer - "
@@ -73,10 +85,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun navigatingToScreen(username: String, sports: String, gender: String) {
         startActivity( Intent(this@MainActivity, FacebookActivity::class.java))
-       /* intent.putExtra(Constant.USER_NAME, username)
-        intent.putExtra(Constant.SPORTS, sports)
-        intent.putExtra(Constant.GENDER, gender)*/
-        /*startActivityForResult(intent, 3)*/
+
     }
 
 

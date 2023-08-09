@@ -1,14 +1,23 @@
 package com.example.iti_project
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
+import android.os.Binder
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.iti_project.databinding.ActivityFacebookMainBinding
 import com.example.myapplication.OnItemClickListener
 
-class FacebookActivity : AppCompatActivity() , OnItemClickListener{
-
+class FacebookActivity : AppCompatActivity() , OnItemClickListener {
+    lateinit var sharedPref :SharedPreferences
+    lateinit var binding: ActivityFacebookMainBinding
     private lateinit var recyclerViewPosts: RecyclerView
     private lateinit var recyclerViewStories: RecyclerView
     private lateinit var postAdapter: PostRecyclerViewAdapter
@@ -16,19 +25,39 @@ class FacebookActivity : AppCompatActivity() , OnItemClickListener{
     private lateinit var posts: MutableList<Post>
     private lateinit var stories: MutableList<Story>
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_facebook_main)
+        binding = ActivityFacebookMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        sharedPref =
+            applicationContext.getSharedPreferences("MyData", Context.MODE_PRIVATE)
         recyclerViewSetup()
+
+        binding.logoutIcon2.setOnClickListener {
+            val editor = sharedPref.edit()
+            editor.putBoolean("IS_LOGIN", false)
+            editor.remove("USER_NAME")
+            editor.remove("PASSWORD")
+            sharedPref.edit().apply()
+            Log.e("error", "${sharedPref.getBoolean("IS_LOGIN", false)}")
+            Log.e("error", "${sharedPref.getString("USER_NAME", "UNKNOWN")}")
+            startActivity(Intent(this@FacebookActivity, MainActivity::class.java))
+            finish()
+        }
+
+        binding.txtStories.text = "Welcome! ${sharedPref.getString("USER_NAME", "UNKNOWN")}"
 
     }
 
     private fun recyclerViewSetup() {
         createPostList()
         createStoryList()
+
         recyclerViewPosts = findViewById(R.id.rv_posts)
         recyclerViewStories = findViewById(R.id.stories_rv)
-        postAdapter = PostRecyclerViewAdapter(posts,this)
+        postAdapter = PostRecyclerViewAdapter(posts, this)
 
         storyAdapter = StoryRecyclerViewAdapter(stories)
         recyclerViewPosts.adapter = postAdapter
@@ -118,10 +147,39 @@ class FacebookActivity : AppCompatActivity() , OnItemClickListener{
     }
 
     override fun onClick(postItem: Post, position: Int) {
-        val intent = Intent(this@FacebookActivity,FacebookDetailsActivity::class.java)
-        intent.putExtra("post_image",postItem.postImage)
-        intent.putExtra("post_name",postItem.name)
-        intent.putExtra("post_status",postItem.status)
-     startActivity(intent)
+        val intent = Intent(this@FacebookActivity, FacebookDetailsActivity::class.java)
+        intent.putExtra("post_image", postItem.postImage)
+        intent.putExtra("post_name", postItem.name)
+        intent.putExtra("post_status", postItem.status)
+        startActivity(intent)
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.second_main_activity, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.logout_menu -> {
+                val editor = sharedPref.edit()
+                editor.putBoolean("IS_LOGIN", false)
+                editor.remove("USER_NAME")
+                editor.remove("PASSWORD")
+                sharedPref.edit().commit()
+                Log.e("error", "${sharedPref.getBoolean("IS_LOGIN", false)}")
+                Log.e("error", "${sharedPref.getString("USER_NAME", "UNKNOWN")}")
+                startActivity(Intent(this@FacebookActivity, MainActivity::class.java))
+                finish()
+                true
+            }
+
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
+
+        }
+
+    }
+
 }
