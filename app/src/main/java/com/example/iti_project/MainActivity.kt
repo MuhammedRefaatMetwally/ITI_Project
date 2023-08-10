@@ -10,7 +10,13 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.lifecycleScope
 import com.example.iti_project.databinding.ActivityMainBinding
+import com.example.iti_project.model.User
+import com.example.iti_project.utils.ApiInterface
+import com.example.iti_project.utils.RetrofitClient
+import kotlinx.coroutines.launch
+import retrofit2.create
 
 class MainActivity : AppCompatActivity() {
 
@@ -166,5 +172,7 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+
 
 }

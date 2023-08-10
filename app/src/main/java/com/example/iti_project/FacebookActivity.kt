@@ -1,19 +1,23 @@
 package com.example.iti_project
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.os.Binder
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.example.iti_project.databinding.ActivityFacebookMainBinding
+import com.example.iti_project.model.Support
+import com.example.iti_project.model.User
+import com.example.iti_project.utils.ApiInterface
+import com.example.iti_project.utils.RetrofitClient
 import com.example.myapplication.OnItemClickListener
+import kotlinx.coroutines.launch
 
 class FacebookActivity : AppCompatActivity() , OnItemClickListener {
     lateinit var sharedPref :SharedPreferences
@@ -24,16 +28,17 @@ class FacebookActivity : AppCompatActivity() , OnItemClickListener {
     private lateinit var storyAdapter: StoryRecyclerViewAdapter
     private lateinit var posts: MutableList<Post>
     private lateinit var stories: MutableList<Story>
-
+    private  var users : List<User>? = null
+    private  var support: Support? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFacebookMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        recyclerViewSetup()
         sharedPref =
             applicationContext.getSharedPreferences("MyData", Context.MODE_PRIVATE)
-        recyclerViewSetup()
 
         binding.logoutIcon2.setOnClickListener {
             val editor = sharedPref.edit()
@@ -49,19 +54,51 @@ class FacebookActivity : AppCompatActivity() , OnItemClickListener {
 
         binding.txtStories.text = "Welcome! ${sharedPref.getString("USER_NAME", "UNKNOWN")}"
 
+
+
     }
 
     private fun recyclerViewSetup() {
-        createPostList()
-        createStoryList()
+        //createPostList()
+        //createStoryList()
+        users = getUserList()
+        support = getSupport()
+        recyclerViewPosts = binding.rvPosts
+        recyclerViewStories = binding.storiesRv
 
-        recyclerViewPosts = findViewById(R.id.rv_posts)
-        recyclerViewStories = findViewById(R.id.stories_rv)
-        postAdapter = PostRecyclerViewAdapter(posts, this)
+    }
+    private  fun getUserList() : List<User>? {
 
-        storyAdapter = StoryRecyclerViewAdapter(stories)
-        recyclerViewPosts.adapter = postAdapter
-        recyclerViewStories.adapter = storyAdapter
+        val retrofit  = RetrofitClient.getInstance().create(ApiInterface::class.java)
+        lifecycleScope.launch {
+            val response = retrofit.getUser()
+            if(response.isSuccessful){
+                users = response.body()?.data
+                postAdapter = PostRecyclerViewAdapter(users,support)
+                recyclerViewPosts.adapter = postAdapter
+                storyAdapter = StoryRecyclerViewAdapter(users)
+                recyclerViewStories.adapter = storyAdapter
+
+                users?.get(0)?.let { Log.e("error", it.firstName) }
+            }else{
+                Toast.makeText(this@FacebookActivity,"No Data" ,Toast.LENGTH_LONG).show()
+            }
+        }
+        return users
+    }
+
+    private  fun getSupport() : Support? {
+        val retrofit  = RetrofitClient.getInstance().create(ApiInterface::class.java)
+        lifecycleScope.launch {
+            val response = retrofit.getUser()
+            if(response.isSuccessful){
+                support = response.body()?.support
+                postAdapter = PostRecyclerViewAdapter(users,support)
+            }else{
+                Toast.makeText(this@FacebookActivity,"No Data" ,Toast.LENGTH_LONG).show()
+            }
+        }
+        return support
     }
 
     private fun createPostList() {
