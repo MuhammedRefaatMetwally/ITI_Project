@@ -5,11 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.iti_project.PostRecyclerViewAdapter.PostViewHolder
 import com.example.iti_project.databinding.PostItemBinding
-import com.example.iti_project.model.Support
-import com.example.iti_project.model.User
+import com.example.iti_project.model.Post
+import com.example.myapplication.OnItemClickListener
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.CoroutineScope
 
-class PostRecyclerViewAdapter(private val users: List<User>? , private  val support : Support?) : RecyclerView.Adapter<PostViewHolder?>() {
+class PostRecyclerViewAdapter(private val posts: List<Post>?, val listener: OnItemClickListener) : RecyclerView.Adapter<PostViewHolder?>() {
 
     inner class PostViewHolder(val binding: PostItemBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -21,18 +22,15 @@ class PostRecyclerViewAdapter(private val users: List<User>? , private  val supp
 
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
-        val item = users!![position]
+        val item = posts!![position]
 
-        Picasso.get().load(item.avatar).into(holder.binding.postImage)
-        holder.binding.textViewName.text = "${item.firstName} ${item.lastName}"
-        holder.binding.textViewStatus.text = item.email
-        holder.binding.textViewLastOnline.text = "${item.id} hr"
+        holder.binding.textViewName.text = "${item.userId} "
+        holder.binding.textViewStatus.text = item.body
+        holder.binding.textViewLastOnline.text = "${item.title}"
         holder.binding.textViewLikes.text = "${item.id}"
-        if(item.avatar.isNotEmpty() ){
-            Picasso.get().load(item.avatar).into(holder.binding.profileImage)
-        }
 
-        // holder.binding.postImage.setOnClickListener { listener.onClick(item,position) }
+
+        holder.binding.postImage.setOnClickListener { listener.onClick(item,position) }
     }
 
 
@@ -40,7 +38,7 @@ class PostRecyclerViewAdapter(private val users: List<User>? , private  val supp
 
 
     override fun getItemCount(): Int {
-        return users?.size ?: 0
+        return posts?.size ?: 0
     }
 
 }

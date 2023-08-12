@@ -12,9 +12,9 @@ import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.example.iti_project.databinding.ActivityFacebookMainBinding
+import com.example.iti_project.model.Comment
+import com.example.iti_project.model.Post
 import com.example.iti_project.model.Support
-import com.example.iti_project.model.User
-import com.example.iti_project.utils.ApiInterface
 import com.example.iti_project.utils.RetrofitClient
 import com.example.myapplication.OnItemClickListener
 import kotlinx.coroutines.launch
@@ -26,9 +26,10 @@ class FacebookActivity : AppCompatActivity() , OnItemClickListener {
     private lateinit var recyclerViewStories: RecyclerView
     private lateinit var postAdapter: PostRecyclerViewAdapter
     private lateinit var storyAdapter: StoryRecyclerViewAdapter
-    private lateinit var posts: MutableList<Post>
+    private lateinit var posts: MutableList<PostFacebook>
     private lateinit var stories: MutableList<Story>
-    private  var users : List<User>? = null
+    private  var postList : List<Post>? = null
+    private  var comments : List<Comment>? = null
     private  var support: Support? = null
 
 
@@ -52,43 +53,62 @@ class FacebookActivity : AppCompatActivity() , OnItemClickListener {
             finish()
         }
 
-        binding.txtStories.text = "Welcome! ${sharedPref.getString("USER_NAME", "UNKNOWN")}"
 
+      binding.getDataBtn.setOnClickListener {
+          postList = getUserList()
 
+      }
 
     }
 
     private fun recyclerViewSetup() {
         //createPostList()
-        //createStoryList()
-        users = getUserList()
-        support = getSupport()
+        createStoryList()
+        //support = getSupport()
         recyclerViewPosts = binding.rvPosts
         recyclerViewStories = binding.storiesRv
+        storyAdapter = StoryRecyclerViewAdapter(stories)
+        recyclerViewStories.adapter = storyAdapter
 
     }
-    private  fun getUserList() : List<User>? {
+    private  fun getUserList() : List<Post>? {
 
-        val retrofit  = RetrofitClient.getInstance().create(ApiInterface::class.java)
+        val retrofit  = RetrofitClient.getInstance()
         lifecycleScope.launch {
-            val response = retrofit.getUser()
+            val response = retrofit.getPosts(binding.editTextPostId.text.toString().toInt())
             if(response.isSuccessful){
-                users = response.body()?.data
-                postAdapter = PostRecyclerViewAdapter(users,support)
+                postList = response.body() ?: listOf()
+                postAdapter = PostRecyclerViewAdapter(postList,this@FacebookActivity)
                 recyclerViewPosts.adapter = postAdapter
-                storyAdapter = StoryRecyclerViewAdapter(users)
-                recyclerViewStories.adapter = storyAdapter
 
-                users?.get(0)?.let { Log.e("error", it.firstName) }
+                postList?.get(0)?.let { Log.e("error", it.title) }
             }else{
                 Toast.makeText(this@FacebookActivity,"No Data" ,Toast.LENGTH_LONG).show()
             }
         }
-        return users
+        return postList
     }
 
-    private  fun getSupport() : Support? {
-        val retrofit  = RetrofitClient.getInstance().create(ApiInterface::class.java)
+
+    private  fun getComments( postId : Int) : List<Comment>? {
+
+        val retrofit  = RetrofitClient.getInstance()
+        lifecycleScope.launch {
+            val response = retrofit.getComments(postId)
+            if(response.isSuccessful){
+                comments = response.body() ?: listOf()
+
+
+                postList?.get(0)?.let { Log.e("error", it.title) }
+            }else{
+                Toast.makeText(this@FacebookActivity,"No Data" ,Toast.LENGTH_LONG).show()
+            }
+        }
+        return comments
+    }
+
+   /* private  fun getSupport() : Support? {
+        val retrofit  = RetrofitClient.getInstance()
         lifecycleScope.launch {
             val response = retrofit.getUser()
             if(response.isSuccessful){
@@ -99,12 +119,12 @@ class FacebookActivity : AppCompatActivity() , OnItemClickListener {
             }
         }
         return support
-    }
+    }*/
 
     private fun createPostList() {
         posts = mutableListOf()
         posts.add(
-            Post(
+            PostFacebook(
                 "Night Dark",
                 "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
                 "This is my First Post in RecyclerView , Very Proud of My work Thanks Route!!",
@@ -115,7 +135,7 @@ class FacebookActivity : AppCompatActivity() , OnItemClickListener {
         )
 
         posts.add(
-            Post(
+            PostFacebook(
                 "Cat Cool",
                 "https://wallpapers.com/images/hd/cool-profile-picture-1ecoo30f26bkr14o.jpg",
                 "How Cool is this RecyclerView , Sounds Interesting !!",
@@ -125,7 +145,7 @@ class FacebookActivity : AppCompatActivity() , OnItemClickListener {
             )
         )
         posts.add(
-            Post(
+            PostFacebook(
                 "Animation Boy",
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI8jrI5YalR4CDz25yNrKDKq38oBehnbuuFQficzZdQfdEq9e_U5xnFLO54bNVi55VpZ0&usqp=CAU",
                 "RecyclerView is so Easy rn , What is Now ?! Nothing new ?!!",
@@ -135,7 +155,7 @@ class FacebookActivity : AppCompatActivity() , OnItemClickListener {
             )
         )
         posts.add(
-            Post(
+            PostFacebook(
                 "Jetpack Composer",
                 "https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
                 "Can't WAIT TO BE AN AWESOME ANDROID DEVELOPER SOOOOOOOON!",
@@ -146,7 +166,7 @@ class FacebookActivity : AppCompatActivity() , OnItemClickListener {
         )
         for (i in 0..199) {
             posts.add(
-                Post(
+                PostFacebook(
                     "Anonymous",
                     "https://static.vecteezy.com/system/resources/thumbnails/009/209/212/small/neon-glowing-profile-icon-3d-illustration-vector.jpg",
                     "DummmmmmmmmmmmmmmmY DATAAAAAAAAAA !!",
@@ -184,10 +204,10 @@ class FacebookActivity : AppCompatActivity() , OnItemClickListener {
     }
 
     override fun onClick(postItem: Post, position: Int) {
+        //val listOfComments = getComments(postId = postItem.id)
         val intent = Intent(this@FacebookActivity, FacebookDetailsActivity::class.java)
-        intent.putExtra("post_image", postItem.postImage)
-        intent.putExtra("post_name", postItem.name)
-        intent.putExtra("post_status", postItem.status)
+        intent.putExtra("post_id",postItem.id )
+
         startActivity(intent)
     }
 
@@ -218,5 +238,7 @@ class FacebookActivity : AppCompatActivity() , OnItemClickListener {
         }
 
     }
+
+
 
 }

@@ -1,146 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/constraint_appbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-       <androidx.constraintlayout.widget.ConstraintLayout
-           android:layout_width="match_parent"
-           android:id="@+id/constraint_appbar"
-           app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintTop_toTopOf="parent"
-           android:layout_height="wrap_content">
-           <com.google.android.material.appbar.AppBarLayout
-               android:id="@+id/app_bar"
-               android:layout_width="0dp"
-               android:layout_height="wrap_content"
-               android:backgroundTint="@null"
-               app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toTopOf="parent">
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-               <androidx.constraintlayout.widget.ConstraintLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                   <androidx.appcompat.widget.Toolbar
-                       android:id="@+id/toolbar"
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       android:background="@color/facebook_btn_color"
-                       app:layout_constraintEnd_toEndOf="parent"
-                       app:layout_constraintStart_toStartOf="parent"
-                       app:layout_constraintTop_toTopOf="parent"
-                       tools:layout_editor_absoluteX="0dp"
-                       tools:layout_editor_absoluteY="0dp" />
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/facebook_btn_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="0dp" />
 
-                   <ImageView
-                       android:id="@+id/icon1"
-                       android:layout_width="0dp"
-                       android:layout_height="0dp"
-                       android:layout_marginEnd="9dp"
-                       android:padding="16dp"
-                       android:src="@drawable/small_house_with_chimney"
-                       app:layout_constraintBottom_toBottomOf="parent"
-                       app:layout_constraintEnd_toStartOf="@id/logout_icon2"
-                       app:layout_constraintStart_toStartOf="parent"
-                       app:layout_constraintTop_toTopOf="parent"
-                       app:tint="@color/white" />
+                <ImageView
+                    android:id="@+id/icon1"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="9dp"
+                    android:padding="16dp"
+                    android:src="@drawable/small_house_with_chimney"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/logout_icon2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/white" />
 
-                   <ImageView
-                       android:id="@+id/logout_icon2"
-                       android:layout_width="0dp"
-                       android:layout_height="0dp"
-                       android:layout_marginEnd="8dp"
-                       android:padding="8dp"
-                       android:src="@drawable/logout_svgrepo_com"
-                       app:layout_constraintBottom_toBottomOf="parent"
-                       app:layout_constraintEnd_toStartOf="@id/icon3"
-                       app:layout_constraintStart_toEndOf="@id/icon1"
-                       app:layout_constraintTop_toTopOf="parent"
-                       app:tint="@color/white" />
+                <ImageView
+                    android:id="@+id/logout_icon2"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="8dp"
+                    android:padding="8dp"
+                    android:src="@drawable/logout_svgrepo_com"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/icon3"
+                    app:layout_constraintStart_toEndOf="@id/icon1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/white" />
 
-                   <ImageView
-                       android:id="@+id/icon3"
-                       android:layout_width="0dp"
-                       android:layout_height="0dp"
-                       android:layout_marginEnd="8dp"
-                       android:padding="16dp"
-                       android:src="@drawable/play_button"
-                       app:layout_constraintBottom_toBottomOf="parent"
-                       app:layout_constraintEnd_toStartOf="@id/icon4"
-                       app:layout_constraintStart_toEndOf="@id/logout_icon2"
-                       app:layout_constraintTop_toTopOf="parent"
-                       app:tint="@color/white" />
+                <ImageView
+                    android:id="@+id/icon3"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="8dp"
+                    android:padding="16dp"
+                    android:src="@drawable/play_button"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/icon4"
+                    app:layout_constraintStart_toEndOf="@id/logout_icon2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/white" />
 
-                   <ImageView
-                       android:id="@+id/icon4"
-                       android:layout_width="0dp"
-                       android:layout_height="0dp"
-                       android:layout_marginEnd="8dp"
-                       android:padding="16dp"
-                       android:src="@drawable/bell"
-                       app:layout_constraintBottom_toBottomOf="parent"
-                       app:layout_constraintEnd_toEndOf="parent"
-                       app:layout_constraintStart_toEndOf="@id/icon3"
-                       app:layout_constraintTop_toTopOf="parent"
-                       app:tint="@color/white" />
-               </androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                    android:id="@+id/icon4"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="8dp"
+                    android:padding="16dp"
+                    android:src="@drawable/bell"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/icon3"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/white" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-           </com.google.android.material.appbar.AppBarLayout>
-
-       </androidx.constraintlayout.widget.ConstraintLayout>
-
-         <androidx.core.widget.NestedScrollView
-             app:layout_constraintTop_toBottomOf="@id/constraint_appbar"
-             app:layout_constraintStart_toStartOf="parent"
-             app:layout_constraintEnd_toEndOf="parent"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content">
-
-             <androidx.constraintlayout.widget.ConstraintLayout
-                 android:layout_width="match_parent"
-                 android:layout_height="match_parent">
-                 <TextView
-                     android:id="@+id/txt_stories"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:fontFamily="@font/dancing_script_bold"
-                     android:text="Stories"
-                     android:textColor="@color/facebook_btn_color"
-                     android:textSize="48sp"
-                     app:layout_constraintTop_toTopOf="parent"
-                     app:layout_constraintEnd_toEndOf="parent"
-                     app:layout_constraintStart_toStartOf="parent"/>
-
-                 <androidx.recyclerview.widget.RecyclerView
-                     android:id="@+id/stories_rv"
-                     android:layout_width="0dp"
-                     android:layout_height="216dp"
-                     android:orientation="horizontal"
-                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                     app:layout_constraintBottom_toTopOf="@id/rv_posts"
-                     app:layout_constraintEnd_toEndOf="parent"
-                     app:layout_constraintStart_toStartOf="parent"
-                     app:layout_constraintTop_toBottomOf="@id/txt_stories"
-                     tools:listitem="@layout/stories_item" />
-
-                 <androidx.recyclerview.widget.RecyclerView
-                     android:id="@+id/rv_posts"
-                     android:layout_width="match_parent"
-                     android:layout_height="0dp"
-                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                     app:layout_constraintEnd_toEndOf="parent"
-                     app:layout_constraintStart_toStartOf="parent"
-                     app:layout_constraintTop_toBottomOf="@id/stories_rv"
-                     tools:listitem="@layout/post_item" />
-                      />
-
-             </androidx.constraintlayout.widget.ConstraintLayout>
-         </androidx.core.widget.NestedScrollView>
+        </com.google.android.material.appbar.AppBarLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/constraint_appbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/edit_text_post_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dancing_script_bold"
+                android:hint="post_id"
+                android:textColor="@color/facebook_btn_color"
+                android:textSize="40sp"
+                app:layout_constraintEnd_toStartOf="@id/get_data_btn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/get_data_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/facebook_btn_color"
+                android:text="Get DATA"
+                app:backgroundTint="@null"
+                app:layout_constraintBottom_toTopOf="@id/stories_rv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/edit_text_post_id"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/stories_rv"
+                android:layout_width="0dp"
+                android:layout_height="216dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toTopOf="@id/rv_posts"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/edit_text_post_id"
+                tools:listitem="@layout/stories_item" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_posts"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/stories_rv"
+                tools:listitem="@layout/post_item" />
+            />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 

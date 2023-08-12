@@ -1,6 +1,6 @@
 package com.example.iti_project
 
-data class Post(
+data class PostFacebook(
     val name: String,
     val profilePicture: String,
     val status: String,
