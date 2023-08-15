@@ -3,15 +3,8 @@
 
 <h3>Features</h3>
 
-<ol>
-  <il>Splash Screen</il>
-<il>Login with API</il>
-<il>Get Posts with API</il>
-<il>Get Comments with API</il>
-<il>Retrofit</il>
-<il>Saving user state(Logged In or not)</il>
-<il>Shared Prefrences</il>
-<il>Custom Adapter</il>
-<il>Picaso Dependency</il>
-  
-</ol>
+<ul style="list-style-type:disc">
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ul>
