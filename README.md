@@ -3,7 +3,7 @@
 
 <h3>Features</h3>
 
-<ul>
+<ol>
   <il>Splash Screen</il>
 <il>Login with API</il>
 <il>Get Posts with API</il>
@@ -14,4 +14,4 @@
 <il>Custom Adapter</il>
 <il>Picaso Dependency</il>
   
-</ul>
+</ol>
