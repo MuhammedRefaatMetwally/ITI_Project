@@ -1,14 +1,11 @@
-package com.example.iti_project
+package com.example.iti_project.ui.post
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.iti_project.PostRecyclerViewAdapter.PostViewHolder
+import com.example.iti_project.ui.post.PostRecyclerViewAdapter.PostViewHolder
 import com.example.iti_project.databinding.PostItemBinding
-import com.example.iti_project.model.Post
-import com.example.myapplication.OnItemClickListener
-import com.squareup.picasso.Picasso
-import kotlinx.coroutines.CoroutineScope
+import com.example.iti_project.core.model.Post
 
 class PostRecyclerViewAdapter(private val posts: List<Post>?, val listener: OnItemClickListener) : RecyclerView.Adapter<PostViewHolder?>() {
 

@@ -1,4 +1,4 @@
-package com.example.iti_project
+package com.example.iti_project.ui.post.story
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

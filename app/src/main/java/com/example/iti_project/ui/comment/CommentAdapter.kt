@@ -1,9 +1,10 @@
-package com.example.iti_project.model
+package com.example.iti_project.ui.comment
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.example.iti_project.core.model.Comment
 import com.example.iti_project.databinding.CommentItemBinding
 
 class CommentAdapter(val comments : List<Comment>?) : Adapter<CommentAdapter.CommentViewHolder>()  {

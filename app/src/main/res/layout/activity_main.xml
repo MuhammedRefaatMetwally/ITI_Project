@@ -43,6 +43,7 @@
         android:background="@color/input_color"
         android:hint="@string/username"
         android:padding="8dp"
+        android:text="kminchelle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/text_username"
         app:layout_constraintTop_toBottomOf="@id/main_title" />
@@ -67,7 +68,7 @@
         android:layout_marginTop="16dp"
         android:background="@color/input_color"
         android:hint="@string/password"
-        android:inputType="numberPassword"
+        android:text="0lelplR"
         android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/password_text"

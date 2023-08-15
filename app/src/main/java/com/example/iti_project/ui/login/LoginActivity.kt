@@ -1,6 +1,5 @@
-package com.example.iti_project
+package com.example.iti_project.ui.login
 
-import android.app.Application
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
@@ -10,26 +9,27 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.lifecycleScope
+import com.example.iti_project.Constant
+import com.example.iti_project.ui.post.PostActivity
+import com.example.iti_project.R
 import com.example.iti_project.databinding.ActivityMainBinding
-import com.example.iti_project.model.User
-import com.example.iti_project.utils.ApiInterface
-import com.example.iti_project.utils.RetrofitClient
-import kotlinx.coroutines.launch
-import retrofit2.create
 
-class MainActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private var sports = ""
     private var gender = ""
-
+    lateinit var viewModel: LoginViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        viewModel = LoginViewModel()
+        viewModel.loginData.observe(this){
+            Toast.makeText(this,"Welcome ${it.body()?.firstName}",Toast.LENGTH_LONG).show()
+        }
         val passwordText = binding.inputPassword.text
         val gamingCheckbox = binding.gamingCk
         val soccerCheckbox = binding.soccerCk
@@ -46,29 +46,21 @@ class MainActivity : AppCompatActivity() {
             validateLogin = (emailText.isNotEmpty() && passwordText.isNotEmpty()) &&
                     (gamingCheckbox.isChecked || soccerCheckbox.isChecked || pingPongCheckbox.isChecked)
                     && (maleRadioBtn.isChecked || femaleRadioBtn.isChecked)
-            saveDataToPreferences()
             checkOnData()
 
-            if (validateLogin) {
-                navigatingToScreen(emailText, sports, gender)
-            } else {
-                Toast.makeText(this@MainActivity, "Fill up the Form Please!", Toast.LENGTH_LONG)
-                    .show()
-            }
+             if (validateLogin) {
+                 viewModel.startLogin(binding.inputUsername.text.toString(),binding.inputPassword.text.toString())
+                 navigatingToScreen()
+             } else {
+                 Toast.makeText(this@LoginActivity, "Fill up the Form Please!", Toast.LENGTH_LONG).show()
+             }
+
         }
 
-
-
     }
-   private  fun saveDataToPreferences(){
-       val pref = applicationContext.getSharedPreferences("MyData" , Context.MODE_PRIVATE)
-       val editor = pref.edit()
-       editor.putString("USER_NAME" , binding.inputUsername.text.toString())
-       editor.putString("PASSWORD" , binding.inputPassword.text.toString())
-       editor.putBoolean("IS_LOGIN" , true)
-       editor.commit()
 
-   }
+
+
     private fun checkOnData() {
         if (binding.soccerCk.isChecked) {
             sports += "Soccer - "
@@ -89,9 +81,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun navigatingToScreen(username: String, sports: String, gender: String) {
-        startActivity( Intent(this@MainActivity, FacebookActivity::class.java))
-
+    private fun navigatingToScreen() {
+        startActivity( Intent(this@LoginActivity, PostActivity::class.java))
     }
 
 
@@ -103,7 +94,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.go_to_second -> {
-                startActivity(Intent(this@MainActivity, FacebookActivity::class.java))
+                startActivity(Intent(this@LoginActivity, PostActivity::class.java))
                 true
             }
 
@@ -138,7 +129,6 @@ class MainActivity : AppCompatActivity() {
             -2 -> dialog.cancel()
             else -> Toast.makeText(this, "Action Canceled", Toast.LENGTH_LONG).show()
         }
-
     }
 
     private fun showExitDialog() {
@@ -163,12 +153,12 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 3) {
             Toast.makeText(
-                this@MainActivity,
+                this@LoginActivity,
                 data?.getStringExtra(Constant.LOGIN_BY),
                 Toast.LENGTH_LONG
             ).show()
         } else {
-            Toast.makeText(this@MainActivity, "Not Found Error Occurred", Toast.LENGTH_LONG).show()
+            Toast.makeText(this@LoginActivity, "Not Found Error Occurred", Toast.LENGTH_LONG).show()
         }
 
     }
