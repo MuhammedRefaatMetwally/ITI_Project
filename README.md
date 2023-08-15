@@ -12,7 +12,7 @@
       <li>Retrofit(Get(@QUERY @PATH) - Post(@BODY) APIs)</li>
       <li>Saving user state(Logged In or not)</li>
       <li>Shared Prefrences</li>
-      <li>Menu</li>
       <li>Custom Adapter</li>
       <li>Picaso Dependency</li>
+       <li>Menu</li>
 </ul>
