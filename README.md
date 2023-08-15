@@ -9,9 +9,10 @@
       <li>Login with API</li>
       <li>Get Posts with API</li>
       <li>Get Comments with API</li>
-      <li>Retrofit</li>
+      <li>Retrofit(Get(@QUERY @PATH) - Post(@BODY) APIs)</li>
       <li>Saving user state(Logged In or not)</li>
       <li>Shared Prefrences</li>
+      <li> Menu <li>
       <li>Custom Adapter</li>
       <li>Picaso Dependency</li
 </ul>
